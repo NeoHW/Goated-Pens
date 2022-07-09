@@ -6,6 +6,12 @@ TOKEN = "5475633161:AAHJs4Y3Abac-BJb6GMj5ZR6-4mvZLI4bvM"
 bot = telebot.TeleBot(TOKEN, parse_mode=None)
 started = False
 
+start_message = "What beneficiary do you want to service?"
+@bot.message_handler(commands=['start'])
+
+def message_handler(message):
+    bot.send_message(message.chat.id, start_message, reply_markup=choosing_bene())
+
 def choosing_bene():
     markup = InlineKeyboardMarkup()
     markup.row_width = 2
@@ -62,10 +68,6 @@ def callback_query(call):
         bot.send_message(call.message.chat.id, "Pets! Which organisation do you want to assist?", reply_markup=choosing_pet_org())
         bot.answer_callback_query(call.id, "Thank you for assisting our animals") 
 
-start_message = "What beneficiary do you want to service?"
-@bot.message_handler(commands=['start'])
-def message_handler(message):
-    bot.send_message(message.chat.id, start_message, reply_markup=choosing_bene())
     
 def main():   
     bot.polling()
