@@ -15,7 +15,7 @@ def choosing_bene():
                 InlineKeyboardButton("Pet", callback_data="cb_pet"))
     return markup
 
-def choosing_org():
+def choosing_eld_org():
     markup = InlineKeyboardMarkup()
     markup.row_width = 1
     markup.add( InlineKeyboardButton("MWS- Nursing Home", callback_data="cb_elderly"),
@@ -27,10 +27,11 @@ def choosing_org():
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
     if call.data == "cb_elderly":
-        bot.send_message(call.message.chat.id, "Elderly! Which organisation do you want to assist?", reply_markup=choosing_org())
-        bot.answer_callback_query(call.id, "Answer is Yes")
+        bot.send_message(call.message.chat.id, "Elderly! Which organisation do you want to assist?", reply_markup=choosing_eld_org())
+        bot.answer_callback_query(call.id, "Thank you for assisting our elderly")
     elif call.data == "cb_kids":
-        bot.answer_callback_query(call.id, "Answer is No")
+        bot.send_message(call.message.chat.id, "Kids! Which organisation do you want to assist?", reply_markup=choosing_kid_org())
+        bot.answer_callback_query(call.id, "Thank you for assisting our children")
 
 start_message = "What beneficiary do you want to service"
 @bot.message_handler(commands=['start'])
