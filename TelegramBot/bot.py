@@ -17,15 +17,17 @@ def choosing_bene():
 
 def choosing_org():
     markup = InlineKeyboardMarkup()
-    markup.row_width = 3
-    markup.add(InlineKeyboardButton("MWS- Nursing Home", callback_data="cb_elderly"),
-                               InlineKeyboardButton("", callback_data="cb_kids"))
+    markup.row_width = 1
+    markup.add( InlineKeyboardButton("MWS- Nursing Home", callback_data="cb_elderly"),
+                InlineKeyboardButton("MWS Bethany Nursing Home", callback_data="cb_kids"),
+                InlineKeyboardButton("Pacific Healthcare Nursing Home", callback_data="cb_kids"))
+
     return markup
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
     if call.data == "cb_elderly":
-        bot.send_message(call.message.chat.id, "Elderly! Which organisation do you want to assist?", reply_markup=gen_markup())
+        bot.send_message(call.message.chat.id, "Elderly! Which organisation do you want to assist?", reply_markup=choosing_org())
         bot.answer_callback_query(call.id, "Answer is Yes")
     elif call.data == "cb_kids":
         bot.answer_callback_query(call.id, "Answer is No")
