@@ -56,10 +56,10 @@ def callback_query(call):
         bot.send_message(call.message.chat.id, "Kids! Which organisation do you want to assist?", reply_markup=choosing_kid_org())
         bot.answer_callback_query(call.id, "Thank you for assisting our children")
     elif call.data == "cb_sn":
-        bot.send_message(call.message.chat.id, "Special needs! Which organisation do you want to assist?", reply_markup=choosing_kid_org())
+        bot.send_message(call.message.chat.id, "Special needs! Which organisation do you want to assist?", reply_markup=choosing_sn_org())
         bot.answer_callback_query(call.id, "Thank you for assisting our special needs population")   
     else:
-        bot.send_message(call.message.chat.id, "Pets! Which organisation do you want to assist?", reply_markup=choosing_kid_org())
+        bot.send_message(call.message.chat.id, "Pets! Which organisation do you want to assist?", reply_markup=choosing_pet_org())
         bot.answer_callback_query(call.id, "Thank you for assisting our animals") 
 
 start_message = "What beneficiary do you want to service?"
