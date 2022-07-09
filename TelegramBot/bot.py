@@ -23,6 +23,22 @@ def choosing_eld_org():
                 InlineKeyboardButton("Pacific Healthcare Nursing Home", callback_data="cb_phnh"))
     return markup
 
+def choosing_sn_org():
+    markup = InlineKeyboardMarkup()
+    markup.row_width = 1
+    markup.add( InlineKeyboardButton("Movement for the Intellectually Disabled of Singapore", callback_data="cb_minds"),
+                InlineKeyboardButton("Handicaps Welfare Association", callback_data="cb_hwa"),
+                InlineKeyboardButton("Down Syndrome Association", callback_data="cb_dsa"))
+    return markup
+
+def choosing_pet_org():
+    markup = InlineKeyboardMarkup()
+    markup.row_width = 1
+    markup.add( InlineKeyboardButton("Action For Singapore Dogs", callback_data="cb_asd"),
+                InlineKeyboardButton("Hope Dog Rescue", callback_data="cb_hdr"),
+                InlineKeyboardButton("Love The Voiceless", callback_data="cb_ltv"))
+    return markup
+
 def choosing_kid_org():
     markup = InlineKeyboardMarkup()
     markup.row_width = 1
@@ -39,8 +55,14 @@ def callback_query(call):
     elif call.data == "cb_kids":
         bot.send_message(call.message.chat.id, "Kids! Which organisation do you want to assist?", reply_markup=choosing_kid_org())
         bot.answer_callback_query(call.id, "Thank you for assisting our children")
+    elif call.data == "cb_sn":
+        bot.send_message(call.message.chat.id, "Special needs! Which organisation do you want to assist?", reply_markup=choosing_kid_org())
+        bot.answer_callback_query(call.id, "Thank you for assisting our special needs population")   
+    elif call.data == "cb_pet":
+        bot.send_message(call.message.chat.id, "Pets! Which organisation do you want to assist?", reply_markup=choosing_kid_org())
+        bot.answer_callback_query(call.id, "Thank you for assisting our animals") 
 
-start_message = "What beneficiary do you want to service"
+start_message = "What beneficiary do you want to service?"
 @bot.message_handler(commands=['start'])
 def message_handler(message):
     bot.send_message(message.chat.id, start_message, reply_markup=choosing_bene())
