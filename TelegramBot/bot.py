@@ -6,11 +6,13 @@ TOKEN = "5475633161:AAHJs4Y3Abac-BJb6GMj5ZR6-4mvZLI4bvM"
 bot = telebot.TeleBot(TOKEN, parse_mode=None)
 started = False
 
-def gen_markup():
+def choosing_bene():
     markup = InlineKeyboardMarkup()
-    markup.row_width = 2
-    markup.add(InlineKeyboardButton("Elderly", callback_data="cb_elderly"),
-                               InlineKeyboardButton("Kids", callback_data="cb_kids"))
+    markup.row_width = 1
+    markup.add( InlineKeyboardButton("Elderly", callback_data="cb_elderly"),
+                InlineKeyboardButton("Kids", callback_data="cb_kids"),
+                InlineKeyboardButton("Special Needs", callback_data="cb_sn"),
+                InlineKeyboardButton("Pet", callback_data="cb_pet"))
     return markup
 
 def choosing_org():
@@ -31,7 +33,7 @@ def callback_query(call):
 start_message = "What beneficiary do you want to service"
 @bot.message_handler(commands=['start'])
 def message_handler(message):
-    bot.send_message(message.chat.id, start_message, reply_markup=gen_markup())
+    bot.send_message(message.chat.id, start_message, reply_markup=choosing_bene())
     
 
 bot.polling()
