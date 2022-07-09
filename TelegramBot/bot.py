@@ -8,7 +8,7 @@ started = False
 
 def choosing_bene():
     markup = InlineKeyboardMarkup()
-    markup.row_width = 1
+    markup.row_width = 2
     markup.add( InlineKeyboardButton("Elderly", callback_data="cb_elderly"),
                 InlineKeyboardButton("Kids", callback_data="cb_kids"),
                 InlineKeyboardButton("Special Needs", callback_data="cb_sn"),
