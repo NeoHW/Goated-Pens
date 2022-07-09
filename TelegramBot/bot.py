@@ -18,10 +18,17 @@ def choosing_bene():
 def choosing_eld_org():
     markup = InlineKeyboardMarkup()
     markup.row_width = 1
-    markup.add( InlineKeyboardButton("MWS- Nursing Home", callback_data="cb_elderly"),
-                InlineKeyboardButton("MWS Bethany Nursing Home", callback_data="cb_kids"),
-                InlineKeyboardButton("Pacific Healthcare Nursing Home", callback_data="cb_kids"))
+    markup.add( InlineKeyboardButton("MWS- Nursing Home", callback_data="cb_mwsnh"),
+                InlineKeyboardButton("MWS Bethany Nursing Home", callback_data="cb_bnh"),
+                InlineKeyboardButton("Pacific Healthcare Nursing Home", callback_data="cb_phnh"))
+    return markup
 
+def choosing_kid_org():
+    markup = InlineKeyboardMarkup()
+    markup.row_width = 1
+    markup.add( InlineKeyboardButton("Singapore Children's Society", callback_data="cb_scs"),
+                InlineKeyboardButton("Club Rainbow", callback_data="cb_cr"),
+                InlineKeyboardButton("Make A Wish Foundation", callback_data="cb_mawf"))
     return markup
 
 @bot.callback_query_handler(func=lambda call: True)
