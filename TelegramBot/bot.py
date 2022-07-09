@@ -13,6 +13,7 @@ def message_handler(message):
     bot.send_message(message.chat.id, start_message, reply_markup=choosing_bene())
 
 def choosing_bene():
+    # markup is keyboard
     markup = InlineKeyboardMarkup()
     markup.row_width = 2
     markup.add( InlineKeyboardButton("Elderly", callback_data="cb_elderly"),
@@ -53,7 +54,7 @@ def choosing_kid_org():
                 InlineKeyboardButton("Make A Wish Foundation", callback_data="cb_mawf"))
     return markup
 
-@bot.callback_query_handler(func=lambda call: True)
+@bot.callback_query_handler(func=None)
 def callback_query(call):
     if call.data == "cb_elderly":
         bot.send_message(call.message.chat.id, "Elderly! Which organisation do you want to assist?", reply_markup=choosing_eld_org())
@@ -64,7 +65,7 @@ def callback_query(call):
     elif call.data == "cb_sn":
         bot.send_message(call.message.chat.id, "Special needs! Which organisation do you want to assist?", reply_markup=choosing_sn_org())
         bot.answer_callback_query(call.id, "Thank you for assisting our special needs population")   
-    else:
+    elif call.data == "cb_pet":
         bot.send_message(call.message.chat.id, "Pets! Which organisation do you want to assist?", reply_markup=choosing_pet_org())
         bot.answer_callback_query(call.id, "Thank you for assisting our animals") 
 
