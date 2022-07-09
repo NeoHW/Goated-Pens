@@ -58,7 +58,7 @@ def callback_query(call):
     elif call.data == "cb_sn":
         bot.send_message(call.message.chat.id, "Special needs! Which organisation do you want to assist?", reply_markup=choosing_kid_org())
         bot.answer_callback_query(call.id, "Thank you for assisting our special needs population")   
-    elif call.data == "cb_pet":
+    else:
         bot.send_message(call.message.chat.id, "Pets! Which organisation do you want to assist?", reply_markup=choosing_kid_org())
         bot.answer_callback_query(call.id, "Thank you for assisting our animals") 
 
