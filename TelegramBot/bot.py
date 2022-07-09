@@ -37,5 +37,8 @@ start_message = "What beneficiary do you want to service"
 def message_handler(message):
     bot.send_message(message.chat.id, start_message, reply_markup=choosing_bene())
     
+def main():   
+    bot.polling()
 
-bot.polling()
+if __name__ == "__main__":
+    main()
