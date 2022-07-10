@@ -5,7 +5,6 @@ import asyncio
 TOKEN = "5475633161:AAHJs4Y3Abac-BJb6GMj5ZR6-4mvZLI4bvM"
 
 bot = telebot.TeleBot(TOKEN, parse_mode=None)
-volunteering = False
 
 start_message = "What beneficiary do you want to service?"
 @bot.message_handler(commands=['start'])
@@ -21,7 +20,6 @@ def choosing_bene():
                 InlineKeyboardButton("Kids", callback_data="cb_kids"),
                 InlineKeyboardButton("Special Needs", callback_data="cb_sn"),
                 InlineKeyboardButton("Pet", callback_data="cb_pet"))
-    volunteering = True
     return markup
 
 def choosing_eld_org():
@@ -30,7 +28,6 @@ def choosing_eld_org():
     markup.add( InlineKeyboardButton("MWS- Nursing Home", callback_data="cb_mwsnh"),
                 InlineKeyboardButton("MWS Bethany Nursing Home", callback_data="cb_bnh"),
                 InlineKeyboardButton("Pacific Healthcare Nursing Home", callback_data="cb_phnh"))
-    volunteering = True
     return markup
 
 def choosing_sn_org():
@@ -39,7 +36,6 @@ def choosing_sn_org():
     markup.add( InlineKeyboardButton("Movement for the Intellectually Disabled of Singapore", callback_data="cb_minds"),
                 InlineKeyboardButton("Handicaps Welfare Association", callback_data="cb_hwa"),
                 InlineKeyboardButton("Down Syndrome Association", callback_data="cb_dsa"))
-    volunteering = True
     return markup
 
 def choosing_pet_org():
@@ -48,7 +44,6 @@ def choosing_pet_org():
     markup.add( InlineKeyboardButton("Action For Singapore Dogs", callback_data="cb_asd"),
                 InlineKeyboardButton("Hope Dog Rescue", callback_data="cb_hdr"),
                 InlineKeyboardButton("Love The Voiceless", callback_data="cb_ltv"))
-    volunteering = True
     return markup
 
 def choosing_kid_org():
@@ -57,7 +52,6 @@ def choosing_kid_org():
     markup.add( InlineKeyboardButton("Singapore Children's Society", callback_data="cb_scs"),
                 InlineKeyboardButton("Club Rainbow", callback_data="cb_cr"),
                 InlineKeyboardButton("Make A Wish Foundation", callback_data="cb_mawf"))
-    volunteering = True
     return markup
 
 def choosing_dates():
@@ -70,7 +64,6 @@ def choosing_dates():
                 InlineKeyboardButton("Friday", callback_data="cb_fri"),
                 InlineKeyboardButton("Saturday", callback_data="cb_sat"),
                 InlineKeyboardButton("Sunday", callback_data="cb_sun"))
-    volunteering = True
     return markup
 
 @bot.callback_query_handler(func=None)
