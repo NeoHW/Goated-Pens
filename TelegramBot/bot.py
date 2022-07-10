@@ -1,6 +1,5 @@
 import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
-import asyncio
 
 TOKEN = "5475633161:AAHJs4Y3Abac-BJb6GMj5ZR6-4mvZLI4bvM"
 
@@ -13,7 +12,6 @@ def message_handler(message):
     bot.send_message(message.chat.id, start_message, reply_markup=choosing_bene())
 
 def choosing_bene():
-    # markup is keyboard
     markup = InlineKeyboardMarkup()
     markup.row_width = 2
     markup.add( InlineKeyboardButton("Elderly", callback_data="cb_elderly"),
@@ -79,12 +77,12 @@ def callback_query_choosing_org(call):
         bot.answer_callback_query(call.id, "Thank you for assisting our special needs population")   
     elif call.data == "cb_pet":
         bot.send_message(call.message.chat.id, "Pets! Which organisation do you want to assist?", reply_markup=choosing_pet_org())
-        bot.answer_callback_query(call.id, "Thank you for assisting our animals")
+        bot.answer_callback_query(call.id, "Thank you for assisting our animals") 
     else:
         return
     bot.send_message(call.message.chat.id, "Thanks you for helping us, may i ask when you are free to assist us?", reply_markup=choosing_dates())
-    bot.answer_callback_query(call.id, "Thank you so much!")    
-
+    bot.answer_callback_query(call.id, "Thank you so much!")
+        
 def main():   
     bot.polling()
 
